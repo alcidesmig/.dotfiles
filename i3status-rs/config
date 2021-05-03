@@ -1,0 +1,79 @@
+icons = "awesome5"
+
+#[theme]
+#name = "solarized-dark"
+#[theme.overrides]
+#separator = ""
+
+[theme]
+name = "solarized-dark"
+[theme.overrides]
+separator = "<span font='12'></span>"
+
+[[block]]
+block = "pacman"
+interval = 600
+format = "{pacman} + {aur} = {both} updates available"
+format_singular = "{both} update available"
+format_up_to_date = "system up to date"
+critical_updates_regex = "(linux|linux-lts|linux-zen)"
+aur_command = "yay -Qua"
+on_click = "alacritty -e yay -Suy"
+
+[[block]]
+block = "networkmanager"
+on_click = "alacritty -e nmtui"
+ap_format = "{ssid} {strength}"
+interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
+interface_name_include = []
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "SSD"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+format = "{icon} {used}/{total} ({available} free)"
+
+[[block]]
+block = "nvidia_gpu"
+label = "RTX 2060"
+interval = 5
+show_clocks = false
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_used} ({mem_used_percents})"
+warning_mem = 80
+interval = 5
+[block.theme_overrides]
+idle_bg = "#1f373d"
+
+[[block]]
+block = "temperature"
+collapsed = false
+interval = 5
+format = "Ryzen 7 3700X {max}C"
+chip = "k10temp-*"
+inputs = ["Tctl"]
+
+[[block]]
+block = "cpu"
+format = "{utilization} {frequency}"
+interval = 2
+[block.theme_overrides]
+idle_bg = "#1f373d"
+
+[[block]]
+block = "sound"
+on_click = "pavucontrol"
+
+[[block]]
+block = "custom"
+command = "(date +'%d/%m'; TZ='America/Sao_Paulo' date +'BR [%H:%M]'; TZ='America/Sao_Paulo') | tr '\\n' ' '"
+interval = 10
+on_click = "alacritty -e cal"
